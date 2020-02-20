@@ -1,5 +1,5 @@
 <?php
-namespace APP;;
+namespace APP;
 use \PDO;
 class Database{
     const PORT =3307;
