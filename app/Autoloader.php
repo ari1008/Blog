@@ -1,17 +1,14 @@
 <?php
-
 namespace APP;
 /**
  * Class Autoloader
  */
-class Autoloader
-{
+class Autoloader{
 
     /**
      * Enregistre notre autoloader
      */
-    static function register()
-    {
+    static function register(){
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 
@@ -19,12 +16,11 @@ class Autoloader
      * Inclue le fichier correspondant à notre classe
      * @param $class_name string Le nom de la classe à charger
      */
-    static function autoload($class)
-    {
-        if (strpos($class, __NAMESPACE__ . '\\') == 0) {
+    static function autoload($class){
+        if(strpos($class,__NAMESPACE__ .'\\')==0) {
             $class = str_replace(__NAMESPACE__, '', $class);
             $class = str_replace('\\', '/', $class);
-            require __DIR__.'/' . $class . '.php';
+            require 'class/' . $class . '.php';
         }
     }
 
