@@ -17,10 +17,10 @@ class Autoloader{
      * @param $class_name string Le nom de la classe à charger
      */
     static function autoload($class){
-        if(strpos($class,__NAMESPACE__ .'\\')==0) {
+        if(strpos($class,__NAMESPACE__ .'\\')===0) {
             $class = str_replace(__NAMESPACE__, '', $class);
             $class = str_replace('\\', '/', $class);
-            require 'class/' . $class . '.php';
+            require 'app/' . $class . '.php';
         }
     }
 
