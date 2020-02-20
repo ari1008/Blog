@@ -14,15 +14,29 @@ class Database{
     }
 
     private function getPDO(){
-        $pdo = new PDO('mysql:host=localhost:'. self::PORT.';dbname='. $this->db_name, ''. $this->db_user .'', '' . $this->db_pass .'');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo = $pdo;
+        if($this->pdo === null){
+            $pdo = new PDO('mysql:host=localhost:'. self::PORT.';dbname='. $this->db_name, ''. $this->db_user .'', '' . $this->db_pass .'');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo = $pdo;
+        }
         return $this->pdo;
     }
 
-    public function query($statement){
+    public function query($statement, $class_name){
         $rec = $this->getPDO()->query($statement);
-        $data= $rec->fetchAll(PDO::FETCH_OBJ);
+        $data= $rec->fetchAll(PDO::FETCH_CLASS, $class_name);
+        return $data;
+    }
+
+    public function prepare($statement, $attribut, $class_name, $one =false){
+        $req = $this->getPDO()->prepare($statement);
+        $req->execute($attribut);
+        $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        if($one){
+            $data =$req->fetch();
+        }else{
+            $data =$req->fetchAll();
+        }
         return $data;
     }
 }

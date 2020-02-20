@@ -1,17 +1,24 @@
 <?php
+//Class utiliser
 use APP\Autoloader;
-
+use APP\Database;
 // Adding new constant project root path absolute
 define('ROOT_FOLDER', realpath(__DIR__ . '/../'));
 
 require ROOT_FOLDER.'/app/Autoloader.php';
 
 Autoloader::register();
-$p = $_GET['p'] ?? 'home';
+if(isset($_GET['p'])){
+    $p = $_GET['p'];
+}else{
+    $p= 'home';
+}
+//Initialisation des objets
+$db = new Database('blog');
 ob_start();
 if ($p === 'home') {
     require ROOT_FOLDER.'/pages/home.php';
-} elseif ($p === 'single') {
+} elseif ($p === 'article') {
     require ROOT_FOLDER.'/pages/single.php';
 }
 $content = ob_get_clean();
