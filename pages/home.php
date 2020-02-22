@@ -3,7 +3,7 @@
         <ul>
             <?php foreach (\APP\Table\Article::getLast() as $post):?>
 
-                <h2><a href="<?= $post->url;?>"> <?= $post->id ?><?= $post->titre;?> </a></h2>
+                <h2><a href="<?= $post->url;?>"> <?= $post->id ?>) <?= $post->titre;?> </a></h2>
                 <p><em><?= $post->categories;?></em></p>
 
                 <p><?= $post->extrait;?></p>

@@ -18,6 +18,8 @@ if ($p === 'home') {
     require ROOT_FOLDER.'/pages/home.php';
 } elseif ($p === 'article') {
     require ROOT_FOLDER.'/pages/single.php';
+} elseif ($p === 'categorie'){
+    require ROOT_FOLDER. '/pages/categorie.php';
 }
 $content = ob_get_clean();
 require ROOT_FOLDER.'/pages/templates/default.php';

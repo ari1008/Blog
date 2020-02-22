@@ -5,7 +5,9 @@ class App{
     const DB_USER = 'root';
     const DB_PASS = 'root';
     const DB_HOST = 'localhost';
+
     private static $database;
+    private static $title='Blog';
 
     public static function getDb(){
         if(self::$database === null){
@@ -14,4 +16,17 @@ class App{
         return self::$database;
     }
 
+    public static function notFound(){
+        header("HTTP/1.0 404 NOT FOUND");
+        header('Location:index.php?p=404');
+    }
+
+    public static function getTitle(){
+        return self::$title;
+    }
+
+    public static function setTitle($title){
+        self::$title = $title;
+
+    }
 }

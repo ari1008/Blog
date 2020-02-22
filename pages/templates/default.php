@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <title>Starter Template for Bootstrap</title>
+    <title><?= \APP\App::getTitle();?></title>
 
     <!-- Bootstrap core CSS -->
 
