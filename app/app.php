@@ -1,32 +1,21 @@
 <?php
-namespace APP;
+namespace App;
+
 class App{
-    const DB_NAME = 'blog';
-    const DB_USER = 'root';
-    const DB_PASS = 'root';
-    const DB_HOST = 'localhost';
 
-    private static $database;
-    private static $title='Blog';
+    public  $title="Mon Blog";
+    private static $_instance;
 
-    public static function getDb(){
-        if(self::$database === null){
-            self::$database = new Database(self::DB_NAME, self::DB_USER, self::DB_PASS, self::DB_HOST);
+    public static function getInstance(){
+        if(is_null(self::$_instance)){
+            self::$_instance = new App();
         }
-        return self::$database;
+        return self::$_instance;
+    }
+    public static function getTable($name){
+        $class_name = 'App\\Table\\' . ucfirst($name) . 'Table';
+        var_dump($class_name);
+        return new $class_name();
     }
 
-    public static function notFound(){
-        header("HTTP/1.0 404 NOT FOUND");
-        header('Location:index.php?p=404');
-    }
-
-    public static function getTitle(){
-        return self::$title;
-    }
-
-    public static function setTitle($title){
-        self::$title = $title;
-
-    }
 }
